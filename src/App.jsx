@@ -1,29 +1,20 @@
 import { useState } from 'react'
 import { letters, numbers, specialChars } from './utils/chars'
 
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
 
-import { LockFill, Clipboard } from 'react-bootstrap-icons'
+import { Header } from './components/Header'
+import { InputGroup2 } from './components/Input'
 
 function App() {
 	const [count, setCount] = useState(0)
 
 	return (
-		<Card>
+		<Card className='bg-dark px-2 py-4 rounded-4 shadow'>
 			<Card.Body>
-				<div className='mb-4'>
-					<LockFill className='fs-4 mb-2' />
-					<Card.Title>Password generator</Card.Title>
-				</div>
-				<InputGroup className='mb-3'>
-					<InputGroup.Text id='basic-addon1'>
-						<Clipboard />
-					</InputGroup.Text>
-					<Form.Control disabled />
-				</InputGroup>
+				<Header />
+				<InputGroup2 />
 				<Button className='w-100' variant='primary'>
 					Generate password
 				</Button>

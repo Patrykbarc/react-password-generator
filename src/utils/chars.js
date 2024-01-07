@@ -57,4 +57,15 @@ export const specialChars = [
 	'/',
 ]
 
-// export default (letters, numbers, specialChars)
+// const chars = [...letters, ...numbers, ...specialChars]
+
+export const generatePassword = () => {
+	let password = ''
+
+	for (let i = 0; i < letters.length; i++) {
+		const randomIndex = Math.floor(Math.random() * letters.length)
+		password += letters[randomIndex]
+	}
+	// return password
+	console.log(password)
+}

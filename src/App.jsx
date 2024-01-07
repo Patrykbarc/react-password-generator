@@ -1,23 +1,18 @@
-import { useState } from 'react'
-import { letters, numbers, specialChars } from './utils/chars'
+import { generatePassword } from './utils/chars'
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 import { Header } from './components/Header'
-import { InputGroup2 } from './components/Input'
+import { Body } from './components/Body'
 
 function App() {
-	const [count, setCount] = useState(0)
-
 	return (
-		<Card
-			className='bg-dark px-3 py-4 rounded-4 shadow text-white-50'
-			style={{ width: '24rem' }}>
+		<Card className='bg-dark px-3 py-4 rounded-4 shadow text-white-50' style={{ width: '24rem' }}>
 			<Card.Body>
 				<Header />
-				<InputGroup2 />
-				<Button className='w-100' variant='primary'>
+				<Body />
+				<Button className='w-100' variant='primary' onClick={generatePassword}>
 					Generate password
 				</Button>
 			</Card.Body>

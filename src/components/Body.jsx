@@ -1,16 +1,7 @@
-import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 
-export function Body() {
-	const [settings, setSettings] = useState({
-		passwordLength: 0,
-		includeLetters: true,
-		includeNumbers: true,
-		includeSpecialChars: true,
-	})
-
+export function Body({ settings, setSettings }) {
 	const { passwordLength } = settings
-
 	function handleSetPasswordLength(event) {
 		setSettings(prevSettings => ({
 			...prevSettings,

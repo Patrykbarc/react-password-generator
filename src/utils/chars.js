@@ -1,71 +1,27 @@
-export const letters = [
-	'a',
-	'b',
-	'c',
-	'd',
-	'e',
-	'f',
-	'g',
-	'h',
-	'i',
-	'j',
-	'k',
-	'l',
-	'm',
-	'n',
-	'o',
-	'p',
-	'q',
-	'r',
-	's',
-	't',
-	'u',
-	'v',
-	'w',
-	'x',
-	'y',
-	'z',
-]
+const letters = 'abcdefghijklmnopqrstuvwxyz'.split('')
+const numbers = '0123456789'.split('')
+const specialChars = '!@#$%^&*()_+-={}[]|;:<>?/'.split('')
 
-export const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+export const generatePassword = passedSettings => {
+	const { passwordLength, includeLetters, includeNumbers, includeSpecialChars } = passedSettings
+	const mergedArray = handleSettings(includeLetters, includeNumbers, includeSpecialChars)
 
-export const specialChars = [
-	'!',
-	'@',
-	'#',
-	'$',
-	'%',
-	'^',
-	'&',
-	'*',
-	'(',
-	')',
-	'_',
-	'+',
-	'-',
-	'=',
-	'{',
-	'}',
-	'[',
-	']',
-	'|',
-	';',
-	':',
-	'<',
-	'>',
-	'?',
-	'/',
-]
-
-// const chars = [...letters, ...numbers, ...specialChars]
-
-export const generatePassword = () => {
 	let password = ''
-
-	for (let i = 0; i < letters.length; i++) {
-		const randomIndex = Math.floor(Math.random() * letters.length)
-		password += letters[randomIndex]
+	for (let i = 0; i < passwordLength; i++) {
+		const randomArray = mergedArray[Math.floor(Math.random() * mergedArray.length)]
+		const randomChar = randomArray[Math.floor(Math.random() * randomArray.length)]
+		password += randomChar
 	}
-	// return password
-	console.log(password)
+
+	return password
+}
+
+const handleSettings = (includeLetters, includeNumbers, includeSpecialChars) => {
+	const mergedArray = []
+
+	includeLetters && mergedArray.push(letters)
+	includeNumbers && mergedArray.push(numbers)
+	includeSpecialChars && mergedArray.push(specialChars)
+
+	return mergedArray
 }

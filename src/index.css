@@ -20,6 +20,9 @@ body {
 	min-height: 100vh;
 }
 
+.card-main {
+	width: 24rem;
+}
 .copy-text-btn {
 	cursor: pointer;
 }

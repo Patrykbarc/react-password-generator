@@ -11,7 +11,9 @@ function App() {
 	const [count, setCount] = useState(0)
 
 	return (
-		<Card className='bg-dark px-2 py-4 rounded-4 shadow'>
+		<Card
+			className='bg-dark px-3 py-4 rounded-4 shadow text-white-50'
+			style={{ width: '24rem' }}>
 			<Card.Body>
 				<Header />
 				<InputGroup2 />

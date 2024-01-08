@@ -1,10 +1,12 @@
 const letters = 'abcdefghijklmnopqrstuvwxyz'.split('')
+letters.push(...letters.map(letter => letter.toUpperCase()))
+
 const numbers = '0123456789'.split('')
 const specialChars = '!@#$%^&*()_+-={}[]|;:<>?/'.split('')
 
 export const generatePassword = passedSettings => {
-	const { passwordLength, includeLetters, includeNumbers, includeSpecialChars } = passedSettings
-	const mergedArray = handleSettings(includeLetters, includeNumbers, includeSpecialChars)
+	const { passwordLength } = passedSettings
+	const mergedArray = handleSettings(passedSettings)
 
 	let password = ''
 	for (let i = 0; i < passwordLength; i++) {
@@ -16,7 +18,7 @@ export const generatePassword = passedSettings => {
 	return password
 }
 
-const handleSettings = (includeLetters, includeNumbers, includeSpecialChars) => {
+const handleSettings = ({ includeLetters, includeNumbers, includeSpecialChars }) => {
 	const mergedArray = []
 
 	includeLetters && mergedArray.push(letters)

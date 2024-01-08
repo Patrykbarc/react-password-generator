@@ -18,11 +18,18 @@ body {
 	place-items: center;
 	min-width: 320px;
 	min-height: 100vh;
+	background-color: #0f1012;
 }
 
 .card-main {
 	width: 24rem;
-}
-.copy-text-btn {
-	cursor: pointer;
+	transition: height 0.3s;
+
+	.generated-password {
+		cursor: pointer;
+		transition: color 0.3s;
+		&:hover {
+			color: #dcdcdc;
+		}
+	}
 }

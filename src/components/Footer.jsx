@@ -48,7 +48,7 @@ export function Footer({ settings }) {
 			{generatedPassword && (
 				<p className='mt-3 m-0'>
 					{isCopied ? (
-						<span>
+						<span className='generated-password-feedback'>
 							Copied to clipboard <CheckCircle />
 						</span>
 					) : (
@@ -61,7 +61,7 @@ export function Footer({ settings }) {
 
 			{warningMessage && (
 				<div className='mt-2'>
-					<small className='mt-4 text-warning fade-in'>{warningMessage}</small>
+					<small className='mt-4 text-warning text-opacity-75 fade-in'>{warningMessage}</small>
 				</div>
 			)}
 		</div>

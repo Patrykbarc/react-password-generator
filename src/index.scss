@@ -39,15 +39,30 @@ body {
 		}
 	}
 
+	.body {
+		.option {
+			&:hover {
+				box-shadow: rgba(99, 99, 99, 0.8) 0px 2px 8px 0px;
+			}
+		}
+	}
+
 	.footer {
 		.generated-password {
 			animation: fade-in 0.3s;
-			cursor: pointer;
 			transition: color 0.3s;
 			&:hover {
 				color: #dcdcdc;
 			}
 		}
+	}
+
+	.generated-password-feedback {
+		cursor: default;
+	}
+	.generated-password,
+	.option {
+		cursor: pointer;
 	}
 }
 

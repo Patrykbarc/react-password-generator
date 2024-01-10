@@ -9,7 +9,7 @@ import { Footer } from './components/Footer'
 function App() {
 	const [settings, setSettings] = useState({
 		passwordLength: 10,
-		includeLetters: false,
+		includeLetters: true,
 		includeNumbers: false,
 		includeSpecialChars: false,
 	})

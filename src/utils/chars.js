@@ -1,6 +1,5 @@
 const letters = 'abcdefghijklmnopqrstuvwxyz'.split('')
-letters.push(...letters.map(letter => letter.toUpperCase()))
-
+const capitalLetters = letters.map(letter => letter.toUpperCase())
 const numbers = '0123456789'.split('')
 const specialChars = '!@#$%^&*()_+-={}[]|;:<>?/'.split('')
 
@@ -18,9 +17,10 @@ export const generatePassword = passedSettings => {
 	return password
 }
 
-const handleSettings = ({ includeLetters, includeNumbers, includeSpecialChars }) => {
+const handleSettings = ({ includeLetters, includeCapitalLetters, includeNumbers, includeSpecialChars }) => {
 	const mergedArray = []
 
+	includeCapitalLetters && mergedArray.push(capitalLetters)
 	includeLetters && mergedArray.push(letters)
 	includeNumbers && mergedArray.push(numbers)
 	includeSpecialChars && mergedArray.push(specialChars)

@@ -25,9 +25,9 @@ export function Footer({ settings }) {
 	}
 
 	useEffect(() => {
-		const { includeLetters, includeNumbers, includeSpecialChars } = settings
+		const { includeLetters, includeCapitalLetters, includeNumbers, includeSpecialChars } = settings
 
-		if (!(includeLetters || includeNumbers || includeSpecialChars)) {
+		if (!(includeLetters || includeCapitalLetters || includeNumbers || includeSpecialChars)) {
 			setIsOptionsChecked('secondary')
 			setWarningMessage('Select at least one option to generate a password')
 		} else {

@@ -10,12 +10,13 @@ function App() {
 	const [settings, setSettings] = useState({
 		passwordLength: 10,
 		includeLetters: true,
+		includeCapitalLetters: true,
 		includeNumbers: false,
 		includeSpecialChars: false,
 	})
 
 	return (
-		<Card className='card-main bg-dark bg-gradient p-4 rounded-4 text-white-50'>
+		<Card className='card-main bg-dark bg-gradient p-4 rounded-4 text-white-50 mx-4'>
 			<Header />
 			<Body settings={settings} setSettings={setSettings} />
 			<hr />

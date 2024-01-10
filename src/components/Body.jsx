@@ -22,7 +22,14 @@ export function Body({ settings, setSettings }) {
 			[optionName]: !prevSettings[optionName],
 		}))
 	}
+
 	const styleSelectedOption = optionName => (selectedOptions[optionName] ? 'bg-secondary' : '')
+
+	const formatOptionName = option =>
+		option
+			.replace(/([a-z])([A-Z])/g, '$1 $2')
+			.toLowerCase()
+			.replace(/^\w/, c => c.toUpperCase())
 
 	return (
 		<div className='body'>
@@ -33,8 +40,8 @@ export function Body({ settings, setSettings }) {
 					</Form.Label>
 					<Form.Range type='number' min={1} max={50} value={passwordLength} onChange={handleSetPasswordLength} />
 				</Form.Group>
-				<div className='d-flex gap-2'>
-					{['Letters', 'Numbers', 'SpecialChars'].map((option, index) => (
+				<div className='d-flex gap-2 flex-wrap'>
+					{['Letters', 'CapitalLetters', 'Numbers', 'SpecialChars'].map((option, index) => (
 						<label
 							key={option}
 							className={`option border border-secondary px-2 py-1 rounded flex-grow-1 ${styleSelectedOption(
@@ -49,7 +56,7 @@ export function Body({ settings, setSettings }) {
 								checked={settings[`include${option}`]}
 								onChange={() => handleSetOptions(`include${option}`)}
 							/>
-							{option}
+							{formatOptionName(option)}
 						</label>
 					))}
 				</div>

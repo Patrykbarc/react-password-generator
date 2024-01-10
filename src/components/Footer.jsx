@@ -9,6 +9,7 @@ export function Footer({ settings }) {
 	const [generatedPassword, setGeneratedPassword] = useState('')
 	const [isCopied, setIsCopied] = useState(false)
 	const [isOptionsChecked, setIsOptionsChecked] = useState('primary')
+	const [warningMessage, setWarningMessage] = useState('')
 
 	function handleGeneratePassword() {
 		const newPassword = generatePassword(settings)
@@ -27,32 +28,41 @@ export function Footer({ settings }) {
 		const { includeLetters, includeNumbers, includeSpecialChars } = settings
 
 		if (!(includeLetters || includeNumbers || includeSpecialChars)) {
-			setIsOptionsChecked('outline-secondary')
+			setIsOptionsChecked('secondary')
+			setWarningMessage('Select at least one option to generate a password')
 		} else {
 			setIsOptionsChecked('primary')
+			setWarningMessage('')
 		}
 	}, [settings])
 
-	console.log(settings)
 	return (
-		<div>
+		<div className='footer'>
 			<Button
 				className='w-100'
 				variant={isOptionsChecked}
-				disabled={isOptionsChecked === 'outline-secondary' && 'disabled'}
+				disabled={isOptionsChecked === 'secondary' && 'disabled'}
 				onClick={handleGeneratePassword}>
 				Generate password
 			</Button>
 			{generatedPassword && (
-				<p className='generated-password mt-3 m-0'>
+				<p className='mt-3 m-0'>
 					{isCopied ? (
 						<span>
 							Copied to clipboard <CheckCircle />
 						</span>
 					) : (
-						<span onClick={copyToClipboard}>{generatedPassword}</span>
+						<span className='generated-password' onClick={copyToClipboard}>
+							{generatedPassword}
+						</span>
 					)}
 				</p>
+			)}
+
+			{warningMessage && (
+				<div className='mt-2'>
+					<small className='mt-4 text-warning fade-in'>{warningMessage}</small>
+				</div>
 			)}
 		</div>
 	)

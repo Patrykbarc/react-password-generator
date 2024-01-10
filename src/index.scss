@@ -18,18 +18,49 @@ body {
 	place-items: center;
 	min-width: 320px;
 	min-height: 100vh;
-	background-color: #0f1012;
+	background: linear-gradient(to bottom, #1d1d1d 0%, #272727 40%, #0d0d0d 150%),
+		linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%);
+	background-blend-mode: multiply;
 }
 
 .card-main {
 	width: 24rem;
 	transition: height 0.3s;
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px,
+		rgba(17, 17, 26, 0.1) 0px 24px 80px;
+	scale: 120%;
 
-	.generated-password {
-		cursor: pointer;
-		transition: color 0.3s;
-		&:hover {
-			color: #dcdcdc;
+	.header {
+		.lock-fill-icon {
+			font-size: 2.5em;
 		}
+		.title {
+			font-size: 2em;
+		}
+	}
+
+	.footer {
+		.generated-password {
+			animation: fade-in 0.3s;
+			cursor: pointer;
+			transition: color 0.3s;
+			&:hover {
+				color: #dcdcdc;
+			}
+		}
+	}
+}
+
+.fade-in {
+	animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 100%;
 	}
 }

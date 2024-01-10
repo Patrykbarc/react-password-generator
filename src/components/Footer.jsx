@@ -61,7 +61,7 @@ export function Footer({ settings }) {
 
 			{warningMessage && (
 				<div className='mt-2'>
-					<small className='mt-4 text-warning text-opacity-75 fade-in'>{warningMessage}</small>
+					<small className='mt-4 text-warning text-opacity-75 fade-in text-justify'>{warningMessage}</small>
 				</div>
 			)}
 		</div>

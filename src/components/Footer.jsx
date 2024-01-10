@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { generatePassword } from '../utils/chars'
 
 import { CheckCircle } from 'react-bootstrap-icons'
@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 export function Footer({ settings }) {
 	const [generatedPassword, setGeneratedPassword] = useState('')
 	const [isCopied, setIsCopied] = useState(false)
+	const [isOptionsChecked, setIsOptionsChecked] = useState('primary')
 
 	function handleGeneratePassword() {
 		const newPassword = generatePassword(settings)
@@ -22,9 +23,24 @@ export function Footer({ settings }) {
 		setTimeout(() => setIsCopied(false), 2500)
 	}
 
+	useEffect(() => {
+		const { includeLetters, includeNumbers, includeSpecialChars } = settings
+
+		if (!(includeLetters || includeNumbers || includeSpecialChars)) {
+			setIsOptionsChecked('outline-secondary')
+		} else {
+			setIsOptionsChecked('primary')
+		}
+	}, [settings])
+
+	console.log(settings)
 	return (
 		<div>
-			<Button className='w-100' variant='primary' onClick={handleGeneratePassword}>
+			<Button
+				className='w-100'
+				variant={isOptionsChecked}
+				disabled={isOptionsChecked === 'outline-secondary' && 'disabled'}
+				onClick={handleGeneratePassword}>
 				Generate password
 			</Button>
 			{generatedPassword && (

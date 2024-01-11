@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { generatePassword } from '../utils/chars'
+import { generatePassword } from '../utils/generatePassword'
 
 import { CheckCircle } from 'react-bootstrap-icons'
 

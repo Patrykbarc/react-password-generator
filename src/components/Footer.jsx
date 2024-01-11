@@ -8,40 +8,51 @@ import Button from 'react-bootstrap/Button'
 export function Footer({ settings }) {
 	const [generatedPassword, setGeneratedPassword] = useState('')
 	const [isCopied, setIsCopied] = useState(false)
-	const [isOptionsChecked, setIsOptionsChecked] = useState('primary')
+	const [optionsButtonVariant, setOptionsButtonVariant] = useState('primary')
 	const [warningMessage, setWarningMessage] = useState('')
+
+	useEffect(() => {
+		const { includeLetters, includeCapitalLetters, includeNumbers, includeSpecialChars } = settings
+
+		if (!(includeLetters || includeCapitalLetters || includeNumbers || includeSpecialChars)) {
+			setOptionsButtonVariant('secondary')
+			setWarningMessage('Select at least one option to generate a password')
+		} else {
+			setOptionsButtonVariant('primary')
+			setWarningMessage('')
+		}
+	}, [settings])
 
 	function handleGeneratePassword() {
 		const newPassword = generatePassword(settings)
 		setGeneratedPassword(newPassword)
 	}
 
-	function copyToClipboard() {
+	function copyToClipboard(event) {
 		const text = event.target.textContent
-		navigator.clipboard.writeText(text)
-		clearTimeout()
-		setIsCopied(true)
-		setTimeout(() => setIsCopied(false), 2500)
-	}
+		try {
+			navigator.clipboard.writeText(text)
+			setIsCopied(true)
 
-	useEffect(() => {
-		const { includeLetters, includeCapitalLetters, includeNumbers, includeSpecialChars } = settings
+			setTimeout(() => {
+				setIsCopied(false)
+				setWarningMessage('')
+			}, 2500)
+		} catch (error) {
+			setWarningMessage('Failed to copy to clipboard')
 
-		if (!(includeLetters || includeCapitalLetters || includeNumbers || includeSpecialChars)) {
-			setIsOptionsChecked('secondary')
-			setWarningMessage('Select at least one option to generate a password')
-		} else {
-			setIsOptionsChecked('primary')
-			setWarningMessage('')
+			setTimeout(() => {
+				setWarningMessage('')
+			}, 3500)
 		}
-	}, [settings])
+	}
 
 	return (
 		<div className='footer'>
 			<Button
 				className='w-100'
-				variant={isOptionsChecked}
-				disabled={isOptionsChecked === 'secondary' && 'disabled'}
+				variant={optionsButtonVariant}
+				disabled={optionsButtonVariant === 'secondary'}
 				onClick={handleGeneratePassword}>
 				Generate password
 			</Button>

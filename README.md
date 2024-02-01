@@ -1,5 +1,9 @@
 # React Password Generator App
 
+## Deploy
+
+https://react-password-generator-patrykbarc.netlify.app/
+
 ## Overview
 
 The Password Generator App is a simple React-based application that allows users to generate secure passwords based on their preferences. The application provides a user-friendly interface to customize password length and include or exclude different character types such as letters, capital letters, numbers, and special characters.
